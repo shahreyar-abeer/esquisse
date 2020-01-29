@@ -5,6 +5,7 @@
 #' @param dataModule Data module to use, choose between \code{"GlobalEnv"}
 #'  or \code{"ImportFile"}.
 #' @param sizeDataModule Size for the modal window for selecting data.
+#' @param paid Logical to indicate whether the customer is subscribed or not.
 #'
 #' @export
 #' 
@@ -16,7 +17,7 @@
 #' @import ggplot2
 #' @importFrom rlang expr_deparse
 #'
-esquisserServer <- function(input, output, session, data = NULL, dataModule = c("GlobalEnv", "ImportFile"), sizeDataModule = "m") {
+esquisserServer <- function(input, output, session, data = NULL, dataModule = c("GlobalEnv", "ImportFile"), sizeDataModule = "m", paid = FALSE) {
   
   ggplotCall <- reactiveValues(code = "")
   
@@ -201,7 +202,15 @@ esquisserServer <- function(input, output, session, data = NULL, dataModule = c(
       facet_args = paramsChart$facet
     )
     
-    gg_call = call("+", gg_call, quote(ggtitle("This is a TRY!")))
+    if(!paid){
+      copywright = quote(annotate("text", x = Inf, y = -Inf, label = "© Moayed Alawami",
+                                  hjust=1.7, vjust=-15.1, col="black", cex=8,
+                                  fontface = "bold", alpha = .2))
+      
+      gg_call = call("+", gg_call, copywright)
+    }
+    
+    
 
     ggplotCall$code <- expr_deparse(gg_call, width = 1e4)
     ggplotCall$call <- gg_call
