@@ -200,6 +200,8 @@ esquisserServer <- function(input, output, session, data = NULL, dataModule = c(
       facet = input$dragvars$target$facet, 
       facet_args = paramsChart$facet
     )
+    
+    gg_call = call("+", gg_call, quote(ggtitle("This is a TRY!")))
 
     ggplotCall$code <- expr_deparse(gg_call, width = 1e4)
     ggplotCall$call <- gg_call
