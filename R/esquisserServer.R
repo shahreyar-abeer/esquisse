@@ -204,7 +204,7 @@ esquisserServer <- function(input, output, session, data = NULL, dataModule = c(
     )
     
     if(!paid){
-      copywright = quote(annotate("text", x = Inf, y = -Inf, label = copywright_text,
+      copywright = quote(annotate("text", x = Inf, y = -Inf, label = eval(copywright_text),
                                   hjust=2.7, vjust=-21.1, col="gray", cex=8,
                                   fontface = "bold", alpha = 1))
       
