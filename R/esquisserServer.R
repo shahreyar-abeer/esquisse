@@ -202,13 +202,17 @@ esquisserServer <- function(input, output, session, data = NULL, dataModule = c(
       facet_args = paramsChart$facet
     )
     
-    if(!paid){
-      copywright = quote(annotate("text", x = Inf, y = -Inf, label = "© Moayed Alawami",
-                                  hjust=2.7, vjust=-21.1, col="gray", cex=8,
-                                  fontface = "bold", alpha = 1))
-      
-      gg_call = call("+", gg_call, copywright)
-    }
+    observeEvent(input$paid, {
+      if(!paid){
+        copywright = quote(annotate("text", x = Inf, y = -Inf, label = "© Moayed Alawami",
+                                    hjust=2.7, vjust=-21.1, col="gray", cex=8,
+                                    fontface = "bold", alpha = 1))
+        
+        gg_call = call("+", gg_call, copywright)
+      }
+    })
+    
+    
     
     
 
