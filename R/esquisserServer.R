@@ -6,7 +6,7 @@
 #'  or \code{"ImportFile"}.
 #' @param sizeDataModule Size for the modal window for selecting data.
 #' @param paid Logical to indicate whether the customer is subscribed or not.
-#' @param copywright_text Text to show in copywright.
+#' @param copyright_text Text to show in copyright.
 #'
 #' @export
 #' 
@@ -18,7 +18,7 @@
 #' @import ggplot2
 #' @importFrom rlang expr_deparse
 #'
-esquisserServer <- function(input, output, session, data = NULL, dataModule = c("GlobalEnv", "ImportFile"), sizeDataModule = "m", paid = FALSE, copywright_text = "© Moayed Alawami") {
+esquisserServer <- function(input, output, session, data = NULL, dataModule = c("GlobalEnv", "ImportFile"), sizeDataModule = "m", paid = FALSE, copyright_text = "© Moayed Alawami") {
   
   ggplotCall <- reactiveValues(code = "")
   
@@ -204,11 +204,11 @@ esquisserServer <- function(input, output, session, data = NULL, dataModule = c(
     )
     
     if(!paid){
-      copywright = bquote(annotate("text", x = Inf, y = -Inf, label = .(copywright_text),
+      copyright = bquote(annotate("text", x = Inf, y = -Inf, label = .(copyright_text),
                                   hjust=2.7, vjust=-21.1, col="gray", cex=8,
                                   fontface = "bold", alpha = 1))
       
-      gg_call = call("+", gg_call, copywright)
+      gg_call = call("+", gg_call, copyright)
     }
     
     
