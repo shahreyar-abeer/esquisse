@@ -457,6 +457,7 @@ controls_appearance <- function(ns) {
         inputId = ns("fill_color"),
         label = "Choose a color:",
         choices = unname(cols), 
+        selected = "#2C3E50",
         width = "100%"
       )
     ),
