@@ -173,19 +173,22 @@ chartControlsServer <- function(input, output, session,
   })
   
   output$code <- renderUI({
-    code <- ggplot_rv$code
-    code <- stri_replace_all(str = code, replacement = "+\n", fixed = "+")
-    if (!is.null(output_filter$code$expr)) {
-      code_dplyr <- deparse(output_filter$code$dplyr, width.cutoff = 80L)
-      code_dplyr <- paste(code_dplyr, collapse = "\n")
-      nm_dat <- data_name()
-      code_dplyr <- stri_replace_all(str = code_dplyr, replacement = "%>%\n", fixed = "%>%")
-      code <- stri_replace_all(str = code, replacement = " ggplot()", fixed = sprintf("ggplot(%s)", nm_dat))
-      code <- paste(code_dplyr, code, sep = " %>%\n")
+    
+    if(input$paid){
+      code <- ggplot_rv$code
+      code <- stri_replace_all(str = code, replacement = "+\n", fixed = "+")
+      if (!is.null(output_filter$code$expr)) {
+        code_dplyr <- deparse(output_filter$code$dplyr, width.cutoff = 80L)
+        code_dplyr <- paste(code_dplyr, collapse = "\n")
+        nm_dat <- data_name()
+        code_dplyr <- stri_replace_all(str = code_dplyr, replacement = "%>%\n", fixed = "%>%")
+        code <- stri_replace_all(str = code, replacement = " ggplot()", fixed = sprintf("ggplot(%s)", nm_dat))
+        code <- paste(code_dplyr, code, sep = " %>%\n")
+      }
+      htmltools::tagList(
+        rCodeContainer(id = ns("codeggplot"), code)
+      )
     }
-    htmltools::tagList(
-      rCodeContainer(id = ns("codeggplot"), code)
-    )
   })
   
   
