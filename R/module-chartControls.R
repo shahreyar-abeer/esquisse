@@ -105,7 +105,8 @@ chartControlsServer <- function(input, output, session,
                                 aesthetics = reactive(NULL),
                                 use_facet = shiny::reactive(FALSE), 
                                 use_transX = shiny::reactive(FALSE), 
-                                use_transY = shiny::reactive(FALSE)) {
+                                use_transY = shiny::reactive(FALSE),
+                                paid = FALSE) {
 
   ns <- session$ns
   
@@ -174,7 +175,7 @@ chartControlsServer <- function(input, output, session,
   
   output$code <- renderUI({
     
-    if(input$paid){
+    if(paid){
       code <- ggplot_rv$code
       code <- stri_replace_all(str = code, replacement = "+\n", fixed = "+")
       if (!is.null(output_filter$code$expr)) {
