@@ -18,7 +18,7 @@
 #' @import ggplot2
 #' @importFrom rlang expr_deparse
 #'
-esquisserServer <- function(input, output, session, data = NULL, dataModule = c("GlobalEnv", "ImportFile"), sizeDataModule = "m", paid = FALSE, copyright_text = "© Moayed Alawami") {
+esquisserServer <- function(input, output, session, data = NULL, dataModule = c("GlobalEnv", "ImportFile"), sizeDataModule = "m", paid = FALSE, copyright_text = "© ...") {
   
   ggplotCall <- reactiveValues(code = "")
   
