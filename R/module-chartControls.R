@@ -190,6 +190,8 @@ chartControlsServer <- function(input, output, session,
         rCodeContainer(id = ns("codeggplot"), code)
       )
     }
+    else
+      "Paid Subscribers can see the actual ggplot2 code!"
   })
   
   
