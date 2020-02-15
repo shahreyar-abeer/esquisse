@@ -94,6 +94,7 @@ esquisserServer <- function(input, output, session, data = NULL, dataModule = c(
   paramsChart <- reactiveValues(inputs = NULL)
   paramsChart <- callModule(
     module = chartControlsServer, 
+    paid = paid,
     id = "controls", 
     type = geom_controls, 
     data_table = reactive(dataChart$data),
